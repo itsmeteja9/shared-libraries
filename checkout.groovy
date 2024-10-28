@@ -1,3 +1,6 @@
-def call(String repoUrl, String repobranch ) {
-     git branch: repobranch, credentialsId: '1e0cb709-2b07-4efd-aae1-42dbeff9260e', url: repoUrl
+def call(String repoUrl, String branch){
+   def workingDir = "${env.WORKSPACE}"
+   sh "git clone ${repoUrl} ${workingDir}"
+   sh "git checkout ${branch}"
+   return workingDir
 }
